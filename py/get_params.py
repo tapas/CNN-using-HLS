@@ -1,4 +1,8 @@
 '''
+ * Contributing Author: Tapas Saini(stapas@cdac.in)
+ * Changes: Documentation added for np.pad and extracting single 
+ *  sample from mnist test set
+ *
  * (C) Copyright 2020 AMIQ Consulting
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -48,6 +52,27 @@ assert(len(X_test)  == len(y_test))
 X_train = np.pad(X_train, ((0,0),(2,2),(2,2),(0,0)), 'constant')
 X_dev   = np.pad(X_dev, ((0,0),(2,2),(2,2),(0,0)), 'constant')
 X_test  = np.pad(X_test, ((0,0),(2,2),(2,2),(0,0)), 'constant')
+
+# >>> a=np.identity(2)
+# >>> a
+# array([[1., 0.],
+#        [0., 1.]])
+# >>> # Now, pad(ZEROS) 1 row before 1st row and 2 rows after last row
+# ... # Also, pad(ZEROS) 1 column before 1st column and 2 columns after last column
+# ... 
+# >>> a_pad=np.pad(a, ((1,2),(2,1)), 'constant')
+# >>> a_pad
+# array([[0., 0., 0., 0., 0.],
+#        [0., 0., 1., 0., 0.],
+#        [0., 0., 0., 1., 0.],
+#        [0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0.]])
+
+# To get fifth test sample in form of 1-D list with rounding upto 6 places after point(.):
+# >>> [round(w,6) for w in X_test[4].reshape(32*32*1)]
+
+# To get fifth test label in test set: 
+# >>> y_test[4]
 
 X_train, y_train = shuffle(X_train,y_train)
 
